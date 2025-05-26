@@ -120,7 +120,7 @@ const SocialIcon = ({ icon: Icon, href, label }: { icon: any; href: string; labe
           </motion.a>
         </TooltipTrigger>
         <TooltipContent side="left" className="bg-gray-800 text-white border-gray-700">
-          <p>{label}</p>
+          <p className="font-montserrat text-sm">{label}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -152,48 +152,35 @@ export default function HeroSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          {/* Name with enhanced styling */}
+          {/* Name with Star Jedi font */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-serif tracking-tight leading-none">
-              <span
-                className="block text-white drop-shadow-2xl"
-                style={{ textShadow: "0 0 20px rgba(255,255,255,0.3)" }}
-              >
-                Anil
-              </span>
-              <span
-                className="block text-white drop-shadow-2xl -mt-1 md:-mt-2 lg:-mt-3"
-                style={{ textShadow: "0 0 20px rgba(255,255,255,0.3)" }}
-              >
-                Guwalani
-              </span>
+            <h1 className="font-star-jedi heading-responsive text-[#f1f1f1] text-glow-blue tracking-wider">
+              <span className="block">Anil</span>
+              <span className="block -mt-2 md:-mt-4">Guwalani</span>
             </h1>
 
             {/* Glowing underline */}
             <motion.div
-              className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-[#66ccff] to-transparent rounded-full"
+              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-[#66ccff] to-transparent rounded-full"
               initial={{ width: 0 }}
               animate={isInView ? { width: "60%" } : {}}
               transition={{ duration: 1.5, delay: 1.2 }}
             />
-
-            {/* Subtle glow effect behind text */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#66ccff]/10 via-cyan-500/10 to-purple-600/10 blur-3xl -z-10 scale-150" />
           </motion.div>
 
-          {/* Enhanced subtitle */}
+          {/* Enhanced subtitle with Komika Axis */}
           <motion.div
             className="relative"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-sans font-light tracking-wide leading-relaxed text-gray-300">
+            <p className="font-komika subheading-responsive text-[#a0a0a0] leading-relaxed">
               Engineering the future.
               <br />
               Leading with purpose.

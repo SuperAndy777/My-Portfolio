@@ -116,10 +116,10 @@ const WritingCard = ({
                 <Quote className="w-5 h-5 text-blue-400" />
               </motion.div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors duration-300 mb-2">
+                <h3 className="font-komika text-lg font-semibold text-[#f1f1f1] group-hover:text-blue-300 transition-colors duration-300 mb-2">
                   {title}
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-3">{description}</p>
+                <p className="font-montserrat text-[#a0a0a0] text-sm leading-relaxed mb-3">{description}</p>
               </div>
             </div>
 
@@ -130,7 +130,7 @@ const WritingCard = ({
               className="overflow-hidden"
             >
               <div className="pt-3 border-t border-slate-700/30">
-                <p className="text-blue-300/80 text-sm italic font-light">"{quote}"</p>
+                <p className="font-montserrat text-blue-300/80 text-sm italic font-light">"{quote}"</p>
               </div>
             </motion.div>
           </CardContent>
@@ -200,10 +200,10 @@ const SpeakingCard = ({
                       <Users className="w-5 h-5 text-purple-400" />
                     </motion.div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors duration-300 mb-2">
+                      <h3 className="font-komika text-lg font-semibold text-[#f1f1f1] group-hover:text-purple-300 transition-colors duration-300 mb-2">
                         {title}
                       </h3>
-                      <p className="text-purple-200/80 text-sm leading-relaxed">{subtitle}</p>
+                      <p className="font-montserrat text-purple-200/80 text-sm leading-relaxed">{subtitle}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -230,7 +230,7 @@ const SpeakingCard = ({
           </motion.div>
         </TooltipTrigger>
         <TooltipContent side="top" className="bg-purple-900 text-purple-100 border-purple-700">
-          <p className="text-sm">Click to learn more about this speaking engagement</p>
+          <p className="font-montserrat text-sm">Click to learn more about this speaking engagement</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -238,6 +238,9 @@ const SpeakingCard = ({
 }
 
 export default function WritingSpeakingSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-200px" })
+
   const writingArticles = [
     {
       title: "From Code to Connection",
@@ -272,13 +275,13 @@ export default function WritingSpeakingSection() {
         <motion.div
           className="flex-1 relative p-6 lg:p-12"
           initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 1 }}
         >
           <div className="max-w-2xl mx-auto h-full flex flex-col">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-12 text-center lg:text-left"
             >
@@ -289,8 +292,10 @@ export default function WritingSpeakingSection() {
               >
                 <BookOpen className="w-12 h-12 text-blue-400" />
               </motion.div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-3">I Write</h2>
-              <p className="text-xl text-slate-300">Thoughts. Ideas. Observations.</p>
+              <h2 className="font-star-jedi text-4xl lg:text-5xl text-[#f1f1f1] text-glow-blue mb-3 tracking-wider">
+                I Write
+              </h2>
+              <p className="font-komika text-xl text-[#a0a0a0]">Thoughts. Ideas. Observations.</p>
             </motion.div>
 
             <div className="flex-1 space-y-8">
@@ -314,13 +319,13 @@ export default function WritingSpeakingSection() {
         <motion.div
           className="flex-1 relative p-6 lg:p-12"
           initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 1 }}
         >
           <div className="max-w-2xl mx-auto h-full flex flex-col">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-12 text-center lg:text-left"
             >
@@ -331,8 +336,10 @@ export default function WritingSpeakingSection() {
               >
                 <Mic className="w-12 h-12 text-purple-400" />
               </motion.div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-3">I Speak</h2>
-              <p className="text-xl text-purple-200">Facilitating conversations that matter.</p>
+              <h2 className="font-star-jedi text-4xl lg:text-5xl text-[#f1f1f1] text-glow-purple mb-3 tracking-wider">
+                I Speak
+              </h2>
+              <p className="font-komika text-xl text-purple-200">Facilitating conversations that matter.</p>
             </motion.div>
 
             <div className="flex-1 space-y-8">

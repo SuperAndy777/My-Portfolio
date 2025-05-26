@@ -214,7 +214,7 @@ const HobbyIcon = ({
             filter: "drop-shadow(2px 2px 4px rgba(0,0,0,0.2))",
           }}
         >
-          <p className="text-sm font-medium">{tooltip}</p>
+          <p className="font-montserrat text-sm font-medium">{tooltip}</p>
           {/* Sticky note corner */}
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-200 transform rotate-45" />
         </TooltipContent>
@@ -224,6 +224,9 @@ const HobbyIcon = ({
 }
 
 export default function FunSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-200px" })
+
   const hobbies = [
     { emoji: "🎬", tooltip: "Analyzing cinema like a film Jedi." },
     { emoji: "🎮", tooltip: "Building puzzle games, not just playing." },
@@ -242,7 +245,7 @@ export default function FunSection() {
         <motion.div
           className="flex-1 p-6 lg:p-12"
           initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 1 }}
         >
           <BicycleRider />
@@ -252,23 +255,23 @@ export default function FunSection() {
         <motion.div
           className="flex-1 p-6 lg:p-12 text-center lg:text-left"
           initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
         >
           <div className="max-w-lg mx-auto lg:mx-0">
             <motion.h2
-              className="text-5xl lg:text-6xl font-bold text-white mb-4"
+              className="font-star-jedi text-5xl lg:text-6xl text-[#f1f1f1] text-glow-blue mb-4 tracking-wider"
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               I Have Fun
             </motion.h2>
 
             <motion.p
-              className="text-xl text-slate-300 mb-12"
+              className="font-komika text-xl text-[#a0a0a0] mb-12"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               Movies. Games. Writing. Curiosity.

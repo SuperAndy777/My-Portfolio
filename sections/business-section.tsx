@@ -35,43 +35,43 @@ const BusinessCard = ({
             whileHover={{
               scale: 1.02,
               y: -5,
-              boxShadow: "0 20px 40px rgba(102, 204, 255, 0.15)",
+              boxShadow: "0 20px 40px rgba(159, 122, 234, 0.15)",
             }}
-            className="group cursor-pointer mb-8 last:mb-0"
+            className="group cursor-pointer mb-6 lg:mb-8 last:mb-0"
           >
-            <Card className="relative bg-slate-800/30 border-slate-600/40 hover:border-[#66ccff]/60 transition-all duration-500 overflow-hidden backdrop-blur-sm">
+            <Card className="relative bg-slate-800/30 border-slate-600/40 hover:border-[#9f7aea]/60 transition-all duration-500 overflow-hidden backdrop-blur-sm">
               {/* Glowing background */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#66ccff]/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 bg-gradient-to-r from-[#9f7aea]/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 initial={false}
               />
 
-              <CardContent className="p-8 relative z-10">
+              <CardContent className="p-6 lg:p-8 relative z-10">
                 <div className="flex items-center gap-6">
                   {/* Icon */}
                   <motion.div
-                    className="p-4 bg-[#66ccff]/20 rounded-full border border-[#66ccff]/30 group-hover:border-[#66ccff]/60 transition-colors duration-300"
+                    className="p-4 bg-[#9f7aea]/20 rounded-full border border-[#9f7aea]/30 group-hover:border-[#9f7aea]/60 transition-colors duration-300"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <Icon className="w-8 h-8 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300" />
+                    <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-[#9f7aea] group-hover:text-[#9f7aea]/80 transition-colors duration-300" />
                   </motion.div>
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold font-serif text-white group-hover:text-[#66ccff] transition-colors duration-300 mb-2">
+                    <h3 className="font-komika text-lg lg:text-xl font-bold text-[#f1f1f1] group-hover:text-[#9f7aea] transition-colors duration-300 mb-2">
                       {title}
                     </h3>
-                    <p className="text-gray-300 text-sm font-sans leading-relaxed">{description}</p>
+                    <p className="font-montserrat text-sm lg:text-base text-[#a0a0a0] leading-relaxed">{description}</p>
                   </div>
                 </div>
               </CardContent>
 
               {/* Glowing border */}
               <motion.div
-                className="absolute inset-0 border border-[#66ccff]/0 group-hover:border-[#66ccff]/50 rounded-lg transition-all duration-500"
+                className="absolute inset-0 border border-[#9f7aea]/0 group-hover:border-[#9f7aea]/50 rounded-lg transition-all duration-500"
                 whileHover={{
-                  boxShadow: "0 0 30px rgba(102, 204, 255, 0.2)",
+                  boxShadow: "0 0 30px rgba(159, 122, 234, 0.2)",
                 }}
               />
             </Card>
@@ -79,9 +79,9 @@ const BusinessCard = ({
         </TooltipTrigger>
         <TooltipContent
           side="right"
-          className="bg-slate-800/90 text-white border-[#66ccff]/30 backdrop-blur-sm max-w-xs"
+          className="bg-slate-800/90 text-white border-[#9f7aea]/30 backdrop-blur-sm max-w-xs"
         >
-          <p className="text-sm font-sans font-medium">{tooltip}</p>
+          <p className="font-montserrat text-sm font-medium">{tooltip}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -126,15 +126,22 @@ export default function BusinessSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          <h2
-            className="text-5xl md:text-6xl lg:text-7xl font-bold font-serif text-white mb-6"
-            style={{ textShadow: "0 0 30px rgba(255,255,255,0.3)" }}
+          <motion.h2
+            className="font-star-jedi heading-responsive text-[#f1f1f1] text-glow-purple mb-6 tracking-wider"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 1, delay: 0.2 }}
           >
             Business & Leadership
-          </h2>
-          <p className="text-xl md:text-2xl text-gray-300 font-sans font-light max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p
+            className="font-komika subheading-responsive text-[#a0a0a0] max-w-3xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
             Leading with clarity. Building with purpose.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Business Cards */}

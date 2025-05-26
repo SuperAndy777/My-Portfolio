@@ -75,9 +75,14 @@ export default function BelieveSection() {
 
       <div className="relative z-10 text-center">
         {/* BELIEVE sign */}
-        <div className="mb-12">
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
           <BelieveSign />
-        </div>
+        </motion.div>
 
         {/* Thank you message */}
         <motion.div
@@ -86,9 +91,9 @@ export default function BelieveSection() {
           transition={{ duration: 1, delay: 1.2 }}
           className="space-y-4"
         >
-          <p className="text-xl md:text-2xl text-gray-300 font-sans font-light">Thank you for visiting.</p>
+          <p className="font-komika text-xl md:text-2xl text-[#a0a0a0]">Thank you for visiting.</p>
           <motion.p
-            className="text-lg md:text-xl text-[#66ccff] font-sans font-medium"
+            className="font-montserrat text-lg md:text-xl text-[#66ccff] font-medium"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 1.8 }}

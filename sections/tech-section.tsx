@@ -47,26 +47,28 @@ const TechCard = ({
                   transition={{ duration: 0.5 }}
                 />
 
-                <CardContent className="p-8 relative z-10 flex flex-col items-center text-center h-full">
+                <CardContent className="p-6 md:p-8 relative z-10 flex flex-col items-center text-center h-full">
                   {/* Icon */}
                   <motion.div
                     className="mb-6 p-4 bg-[#66ccff]/20 rounded-full border border-[#66ccff]/30 group-hover:border-[#66ccff]/60 transition-colors duration-300"
                     whileHover={{ rotate: 10, scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <Icon className="w-8 h-8 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300" />
+                    <Icon className="w-6 h-6 md:w-8 md:h-8 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300" />
                   </motion.div>
 
                   {/* Title */}
                   <div className="flex items-center gap-2 mb-4">
-                    <h3 className="text-xl font-bold font-serif text-white group-hover:text-[#66ccff] transition-colors duration-300">
+                    <h3 className="font-komika text-lg md:text-xl font-bold text-[#f1f1f1] group-hover:text-[#66ccff] transition-colors duration-300">
                       {title}
                     </h3>
                     <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-[#66ccff] transition-colors duration-300 opacity-0 group-hover:opacity-100" />
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-300 text-sm leading-relaxed font-sans flex-1">{description}</p>
+                  <p className="font-montserrat text-sm md:text-base text-[#a0a0a0] leading-relaxed flex-1">
+                    {description}
+                  </p>
                 </CardContent>
 
                 {/* Glowing border effect */}
@@ -81,7 +83,7 @@ const TechCard = ({
           </motion.div>
         </TooltipTrigger>
         <TooltipContent side="top" className="bg-slate-800/90 text-white border-[#66ccff]/30 backdrop-blur-sm max-w-xs">
-          <p className="text-sm font-sans">{description}</p>
+          <p className="font-montserrat text-sm">{description}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -124,19 +126,26 @@ export default function TechSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          <h2
-            className="text-5xl md:text-6xl lg:text-7xl font-bold font-serif text-white mb-6"
-            style={{ textShadow: "0 0 30px rgba(255,255,255,0.3)" }}
+          <motion.h2
+            className="font-star-jedi heading-responsive text-[#f1f1f1] text-glow-blue mb-6 tracking-wider"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 1, delay: 0.2 }}
           >
             Tech Side
-          </h2>
-          <p className="text-xl md:text-2xl text-gray-300 font-sans font-light max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p
+            className="font-komika subheading-responsive text-[#a0a0a0] max-w-3xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
             Crafting code. Building systems.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Tech Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {techProjects.map((project, index) => (
             <TechCard
               key={index}
