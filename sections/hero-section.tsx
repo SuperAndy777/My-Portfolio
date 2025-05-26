@@ -2,15 +2,11 @@
 
 import { motion, useInView } from "framer-motion"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Linkedin, Github, User, Sparkles } from "lucide-react"
-import Image from "next/image"
-import { useRef, useState } from "react"
+import { Linkedin, Github } from "lucide-react"
+import { useRef } from "react"
 
-// Grogu floating pod component with fallback
+// CSS-based Grogu Pod (no external images)
 const GroguPod = () => {
-  const [imageLoaded, setImageLoaded] = useState(false)
-  const [imageError, setImageError] = useState(false)
-
   return (
     <motion.div
       className="relative"
@@ -29,37 +25,26 @@ const GroguPod = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full shadow-2xl">
           <div className="absolute inset-2 bg-gradient-to-br from-gray-100 to-gray-300 rounded-full">
             <div className="absolute inset-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center overflow-hidden">
-              {/* Grogu image or fallback */}
-              {!imageError ? (
-                <div className="relative w-full h-full rounded-full overflow-hidden">
-                  <Image
-                    src="/images/grogu-ice-cream.jpg"
-                    alt="Grogu with ice cream"
-                    fill
-                    className={`object-cover object-center scale-110 transition-opacity duration-300 ${
-                      imageLoaded ? "opacity-100" : "opacity-0"
-                    }`}
-                    priority
-                    sizes="(max-width: 768px) 128px, (max-width: 1024px) 192px, 224px"
-                    onLoad={() => setImageLoaded(true)}
-                    onError={() => {
-                      setImageError(true)
-                      setImageLoaded(false)
-                    }}
-                  />
-                  {/* Loading/fallback overlay */}
-                  {!imageLoaded && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-200 to-blue-300">
-                      <Sparkles className="w-8 h-8 text-blue-600 animate-pulse" />
-                    </div>
-                  )}
+              {/* CSS-based Grogu character */}
+              <div className="relative w-full h-full flex items-center justify-center">
+                {/* Grogu's head */}
+                <div className="relative w-16 h-20 bg-gradient-to-b from-green-200 to-green-300 rounded-full">
+                  {/* Eyes */}
+                  <div className="absolute top-6 left-3 w-3 h-4 bg-black rounded-full"></div>
+                  <div className="absolute top-6 right-3 w-3 h-4 bg-black rounded-full"></div>
+                  {/* Ears */}
+                  <div className="absolute -top-2 -left-2 w-4 h-8 bg-gradient-to-b from-green-200 to-green-300 rounded-full transform -rotate-12"></div>
+                  <div className="absolute -top-2 -right-2 w-4 h-8 bg-gradient-to-b from-green-200 to-green-300 rounded-full transform rotate-12"></div>
+                  {/* Ice cream cone */}
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                    <div
+                      className="w-3 h-6 bg-gradient-to-b from-yellow-200 to-yellow-400 transform rotate-180"
+                      style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}
+                    ></div>
+                    <div className="w-4 h-3 bg-gradient-to-b from-pink-200 to-pink-300 rounded-t-full -mt-1"></div>
+                  </div>
                 </div>
-              ) : (
-                /* Fallback when image fails */
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-200 to-blue-300 flex items-center justify-center">
-                  <Sparkles className="w-8 h-8 text-blue-600" />
-                </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
@@ -70,50 +55,41 @@ const GroguPod = () => {
   )
 }
 
-// Jedi avatar component with fallback
+// CSS-based Avatar (no external images)
 const JediAvatar = () => {
-  const [imageLoaded, setImageLoaded] = useState(false)
-  const [imageError, setImageError] = useState(false)
-
   return (
     <div className="relative">
       <div className="relative w-48 h-60 sm:w-56 sm:h-72 md:w-64 md:h-80 lg:w-72 lg:h-88">
         {/* Avatar container */}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg shadow-2xl overflow-hidden">
-          <div className="relative w-full h-full">
-            {!imageError ? (
-              <>
-                <Image
-                  src="/images/profile-photo.jpg"
-                  alt="Anil Guwalani"
-                  fill
-                  className={`object-cover transition-opacity duration-300 ${
-                    imageLoaded ? "opacity-100" : "opacity-0"
-                  }`}
-                  priority
-                  sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 288px"
-                  style={{
-                    filter: "contrast(1.1) brightness(0.95) saturate(1.1)",
-                  }}
-                  onLoad={() => setImageLoaded(true)}
-                  onError={() => {
-                    setImageError(true)
-                    setImageLoaded(false)
-                  }}
-                />
-                {/* Loading/fallback overlay */}
-                {!imageLoaded && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-gray-700 to-gray-800">
-                    <User className="w-16 h-16 text-gray-400 animate-pulse" />
-                  </div>
-                )}
-              </>
-            ) : (
-              /* Fallback when image fails */
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-gray-700 to-gray-800">
-                <User className="w-16 h-16 text-gray-400" />
+          <div className="relative w-full h-full flex items-center justify-center">
+            {/* CSS-based portrait */}
+            <div className="relative w-32 h-40 bg-gradient-to-b from-amber-100 to-amber-200 rounded-lg">
+              {/* Head */}
+              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-16 h-20 bg-gradient-to-b from-amber-100 to-amber-200 rounded-full">
+                {/* Hair */}
+                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-18 h-8 bg-gradient-to-b from-gray-800 to-gray-700 rounded-full"></div>
+                {/* Eyes */}
+                <div className="absolute top-6 left-3 w-2 h-2 bg-gray-800 rounded-full"></div>
+                <div className="absolute top-6 right-3 w-2 h-2 bg-gray-800 rounded-full"></div>
+                {/* Smile */}
+                <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-4 h-2 border-b-2 border-gray-800 rounded-full"></div>
               </div>
-            )}
+              {/* Body/Shirt */}
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-24 bg-gradient-to-b from-blue-600 to-blue-800 rounded-t-lg">
+                {/* Collar */}
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-4 bg-white rounded-b-lg"></div>
+              </div>
+            </div>
+
+            {/* Tech elements overlay */}
+            <div className="absolute inset-0 opacity-20">
+              {/* Code symbols */}
+              <div className="absolute top-4 left-4 text-[#66ccff] font-mono text-xs">&lt;/&gt;</div>
+              <div className="absolute top-8 right-6 text-[#66ccff] font-mono text-xs">{"{}"}</div>
+              <div className="absolute bottom-12 left-6 text-[#66ccff] font-mono text-xs">[]</div>
+              <div className="absolute bottom-8 right-4 text-[#66ccff] font-mono text-xs">=&gt;</div>
+            </div>
 
             {/* Overlays */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
@@ -186,7 +162,7 @@ export default function HeroSection() {
       ref={ref}
       className="relative min-h-screen w-full flex items-center justify-center px-4 sm:px-6 md:px-8 py-8"
     >
-      {/* Main content - Always show three columns on desktop */}
+      {/* Main content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto">
         {/* Mobile Layout - Stack vertically */}
         <div className="block lg:hidden">
@@ -266,7 +242,7 @@ export default function HeroSection() {
 
         {/* Desktop Layout - Three columns */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-8 items-center">
-          {/* Left side - Your Profile Photo */}
+          {/* Left side - Your Profile Avatar */}
           <motion.div
             className="flex justify-center lg:justify-start"
             initial={{ opacity: 0, x: -50 }}
