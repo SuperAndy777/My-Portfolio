@@ -35,6 +35,11 @@ const GroguPod = () => {
                   className="object-cover object-center scale-110"
                   priority
                   sizes="(max-width: 768px) 128px, (max-width: 1024px) 192px, 224px"
+                  onError={(e) => {
+                    console.log("Grogu image failed to load")
+                    // Fallback: hide the image and show a placeholder
+                    e.currentTarget.style.display = "none"
+                  }}
                 />
               </div>
             </div>
@@ -64,6 +69,11 @@ const JediAvatar = () => {
               sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 288px"
               style={{
                 filter: "contrast(1.1) brightness(0.95) saturate(1.1)",
+              }}
+              onError={(e) => {
+                console.log("Profile image failed to load")
+                // Fallback: show a placeholder
+                e.currentTarget.style.display = "none"
               }}
             />
             {/* Subtle overlay for the space theme */}
@@ -139,81 +149,160 @@ export default function HeroSection() {
       className="relative min-h-screen w-full flex items-center justify-center px-4 sm:px-6 md:px-8 py-8"
     >
       {/* Main content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center">
-        {/* Left side - Your Profile Photo */}
-        <motion.div
-          className="flex justify-center lg:justify-start order-2 lg:order-1"
-          initial={{ opacity: 0, x: -50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <JediAvatar />
-        </motion.div>
-
-        {/* Center - Main content with enhanced typography */}
-        <motion.div
-          className="text-center space-y-6 lg:space-y-8 order-1 lg:order-2"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, delay: 0.4 }}
-        >
-          {/* Name with Sora font */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto">
+        {/* Mobile Layout - Stack vertically */}
+        <div className="block lg:hidden">
+          {/* Mobile: Center content first */}
           <motion.div
-            className="relative"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.6 }}
-          >
-            <h1 className="heading-hero tracking-wide">
-              <span className="block">Anil</span>
-              <span className="block -mt-2 sm:-mt-3 md:-mt-4">Guwalani</span>
-            </h1>
-
-            {/* Glowing underline */}
-            <motion.div
-              className="absolute -bottom-2 sm:-bottom-3 md:-bottom-4 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-[#66ccff] to-transparent rounded-full"
-              initial={{ width: 0 }}
-              animate={isInView ? { width: "60%" } : {}}
-              transition={{ duration: 1.5, delay: 1.2 }}
-            />
-          </motion.div>
-
-          {/* Enhanced subtitle with Space Grotesk */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 0.8 }}
-          >
-            <p className="heading-medium text-light leading-tight">
-              Engineering the future.
-              <br />
-              Leading with purpose.
-            </p>
-          </motion.div>
-
-          {/* Decorative elements */}
-          <motion.div
-            className="flex justify-center items-center space-x-4 mt-6 lg:mt-8"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-center space-y-6 mb-8"
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, delay: 1.4 }}
+            transition={{ duration: 1, delay: 0.4 }}
           >
-            <div className="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent to-[#66ccff]" />
-            <div className="w-2 h-2 bg-[#66ccff] rounded-full animate-pulse" />
-            <div className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-[#66ccff]" />
-          </motion.div>
-        </motion.div>
+            {/* Name */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
+              <h1 className="heading-hero tracking-wide">
+                <span className="block">Anil</span>
+                <span className="block -mt-2 sm:-mt-3">Guwalani</span>
+              </h1>
 
-        {/* Right side - Grogu Pod */}
-        <motion.div
-          className="flex justify-center lg:justify-end order-3"
-          initial={{ opacity: 0, x: 50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          <GroguPod />
-        </motion.div>
+              {/* Glowing underline */}
+              <motion.div
+                className="absolute -bottom-2 sm:-bottom-3 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-[#66ccff] to-transparent rounded-full"
+                initial={{ width: 0 }}
+                animate={isInView ? { width: "60%" } : {}}
+                transition={{ duration: 1.5, delay: 1.2 }}
+              />
+            </motion.div>
+
+            {/* Subtitle */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 1, delay: 0.8 }}
+            >
+              <p className="heading-medium text-light leading-tight">
+                Engineering the future.
+                <br />
+                Leading with purpose.
+              </p>
+            </motion.div>
+
+            {/* Decorative elements */}
+            <motion.div
+              className="flex justify-center items-center space-x-4 mt-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1, delay: 1.4 }}
+            >
+              <div className="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent to-[#66ccff]" />
+              <div className="w-2 h-2 bg-[#66ccff] rounded-full animate-pulse" />
+              <div className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-[#66ccff]" />
+            </motion.div>
+          </motion.div>
+
+          {/* Mobile: Images side by side */}
+          <div className="flex justify-center items-center gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              <JediAvatar />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
+              <GroguPod />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Desktop Layout - Three columns */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 items-center">
+          {/* Left side - Your Profile Photo */}
+          <motion.div
+            className="flex justify-center lg:justify-start"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <JediAvatar />
+          </motion.div>
+
+          {/* Center - Main content */}
+          <motion.div
+            className="text-center space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            {/* Name */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
+              <h1 className="heading-hero tracking-wide">
+                <span className="block">Anil</span>
+                <span className="block -mt-4 md:-mt-6">Guwalani</span>
+              </h1>
+
+              {/* Glowing underline */}
+              <motion.div
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-[#66ccff] to-transparent rounded-full"
+                initial={{ width: 0 }}
+                animate={isInView ? { width: "60%" } : {}}
+                transition={{ duration: 1.5, delay: 1.2 }}
+              />
+            </motion.div>
+
+            {/* Subtitle */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 1, delay: 0.8 }}
+            >
+              <p className="heading-medium text-light leading-tight">
+                Engineering the future.
+                <br />
+                Leading with purpose.
+              </p>
+            </motion.div>
+
+            {/* Decorative elements */}
+            <motion.div
+              className="flex justify-center items-center space-x-4 mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1, delay: 1.4 }}
+            >
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#66ccff]" />
+              <div className="w-2 h-2 bg-[#66ccff] rounded-full animate-pulse" />
+              <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#66ccff]" />
+            </motion.div>
+          </motion.div>
+
+          {/* Right side - Grogu Pod */}
+          <motion.div
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <GroguPod />
+          </motion.div>
+        </div>
       </div>
 
       {/* Social icons - Bottom right */}

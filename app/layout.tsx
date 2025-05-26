@@ -5,6 +5,9 @@ import ClientLayout from "./ClientLayout"
 export const metadata: Metadata = {
   title: "Anil Guwalani - Portfolio",
   description: "Engineering the future. Leading with purpose.",
+  icons: {
+    icon: "/favicon.ico",
+  },
     generator: 'v0.dev'
 }
 
