@@ -1,12 +1,14 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
+import Image from "next/image"
 
-// CSS-based BELIEVE sign
+// BELIEVE sign component with actual image
 const BelieveSign = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [imageError, setImageError] = useState(false)
 
   return (
     <div ref={ref} className="relative">
@@ -18,7 +20,7 @@ const BelieveSign = () => {
         transition={{ duration: 0.5 }}
       />
 
-      {/* CSS-based BELIEVE sign */}
+      {/* BELIEVE sign with actual image */}
       <motion.div
         className="relative transform"
         initial={{ opacity: 0, y: -50, rotateX: 20 }}
@@ -37,26 +39,36 @@ const BelieveSign = () => {
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
-          className="relative w-64 h-40 sm:w-80 sm:h-48 md:w-96 md:h-56 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-lg shadow-2xl flex items-center justify-center"
+          className="relative w-64 h-40 sm:w-80 sm:h-48 md:w-96 md:h-56"
         >
-          {/* BELIEVE text */}
-          <div className="text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-blue-800 tracking-wider transform -rotate-1">
-              BELIEVE
-            </h2>
-          </div>
-
-          {/* Tape corners */}
-          <div className="absolute -top-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-          <div className="absolute -top-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-          <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-          <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-
-          {/* Paper texture overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-lg"></div>
+          {!imageError ? (
+            <Image
+              src="/images/believe-sign.png"
+              alt="BELIEVE sign"
+              fill
+              className="object-contain"
+              priority
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            // Fallback CSS BELIEVE sign if image fails
+            <div className="w-full h-full bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-lg shadow-2xl flex items-center justify-center">
+              <div className="text-center">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-blue-800 tracking-wider transform -rotate-1">
+                  BELIEVE
+                </h2>
+              </div>
+              {/* Tape corners */}
+              <div className="absolute -top-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
+              <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-lg"></div>
+            </div>
+          )}
         </motion.div>
 
-        {/* Pulsing glow effect behind the sign */}
+        {/* Glow effect */}
         <motion.div
           className="absolute inset-0 bg-yellow-400/20 rounded-xl blur-2xl -z-10"
           animate={{
