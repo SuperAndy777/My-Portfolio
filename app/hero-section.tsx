@@ -238,7 +238,7 @@ export default function HeroSection() {
             >
               <h1 className="heading-hero tracking-wide">
                 <span className="block">Anil</span>
-                <span className="block -mt-2 sm:-mt-3">Guwalani</span>
+                <span className="block -mt-1 sm:-mt-2">Guwalani</span>
               </h1>
 
               {/* Glowing underline */}
@@ -324,7 +324,7 @@ export default function HeroSection() {
             >
               <h1 className="heading-hero tracking-wide">
                 <span className="block">Anil</span>
-                <span className="block -mt-4 md:-mt-6">Guwalani</span>
+                <span className="block -mt-2 md:-mt-3">Guwalani</span>
               </h1>
 
               {/* Glowing underline */}

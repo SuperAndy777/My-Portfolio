@@ -6,6 +6,7 @@ import HeroSection from "./hero-section"
 import TechSection from "./tech-section"
 import BusinessSection from "./business-section"
 import BelieveSection from "./believe-section"
+import FunSection from "./fun-section"
 
 // Galaxy background component (inline)
 const GalaxyBackground = () => {
@@ -154,6 +155,18 @@ export default function Page() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <BusinessSection />
+        </motion.div>
+
+        <SectionDivider />
+
+        <motion.div
+          className="section"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <FunSection />
         </motion.div>
 
         <SectionDivider />
