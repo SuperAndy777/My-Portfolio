@@ -33,9 +33,8 @@ const TechCard = ({
             animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 0.8, delay }}
             whileHover={{
-              scale: 1.05,
-              y: -10,
-              boxShadow: "0 20px 40px rgba(102, 204, 255, 0.2)",
+              scale: 1.03,
+              boxShadow: "0 0 15px #66ccff33",
             }}
             className="group h-full cursor-pointer"
           >
@@ -52,23 +51,28 @@ const TechCard = ({
                   <motion.div
                     className="mb-6 p-4 bg-[#66ccff]/20 rounded-full border border-[#66ccff]/30 group-hover:border-[#66ccff]/60 transition-colors duration-300"
                     whileHover={{ rotate: 10, scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    transition={{ type: "spring", stiffness: 200 }}
                   >
                     <Icon className="w-6 h-6 md:w-8 md:h-8 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300" />
                   </motion.div>
 
                   {/* Title */}
                   <div className="flex items-center gap-2 mb-4">
-                    <h3 className="font-komika text-lg md:text-xl font-bold text-[#f1f1f1] group-hover:text-[#66ccff] transition-colors duration-300">
-                      {title}
-                    </h3>
+                    <h3 className="heading-small group-hover:text-accent transition-colors duration-300">{title}</h3>
                     <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-[#66ccff] transition-colors duration-300 opacity-0 group-hover:opacity-100" />
                   </div>
 
                   {/* Description */}
-                  <p className="font-montserrat text-sm md:text-base text-[#a0a0a0] leading-relaxed flex-1">
-                    {description}
-                  </p>
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    whileHover={{ height: "auto", opacity: 1 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-body-medium text-light leading-relaxed pt-2 border-t border-slate-700/30">
+                      {description}
+                    </p>
+                  </motion.div>
                 </CardContent>
 
                 {/* Glowing border effect */}
@@ -83,7 +87,7 @@ const TechCard = ({
           </motion.div>
         </TooltipTrigger>
         <TooltipContent side="top" className="bg-slate-800/90 text-white border-[#66ccff]/30 backdrop-blur-sm max-w-xs">
-          <p className="font-montserrat text-sm">{description}</p>
+          <p className="text-body-small">{description}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -124,21 +128,21 @@ export default function TechSection() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <motion.h2
-            className="font-star-jedi heading-responsive text-[#f1f1f1] text-glow-blue mb-6 tracking-wider"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2 }}
+          <motion.h1
+            className="heading-section tracking-wide fade-in-up"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
             Tech Side
-          </motion.h2>
+          </motion.h1>
           <motion.p
-            className="font-komika subheading-responsive text-[#a0a0a0] max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 0.4 }}
+            className="heading-medium text-light mt-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
           >
             Crafting code. Building systems.
           </motion.p>
@@ -153,7 +157,7 @@ export default function TechSection() {
               title={project.title}
               description={project.description}
               githubUrl={project.githubUrl}
-              delay={isInView ? 0.2 + index * 0.2 : 0}
+              delay={isInView ? 0.2 + index * 0.1 : 0}
             />
           ))}
         </div>

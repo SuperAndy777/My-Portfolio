@@ -17,33 +17,12 @@ export default function ClientLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
-
-        {/* Custom Font Faces */}
-        <style jsx global>{`
-          @font-face {
-            font-family: 'Star Jedi';
-            src: url('/fonts/StarJedi.woff2') format('woff2'),
-                 url('/fonts/StarJedi.woff') format('woff'),
-                 url('/fonts/StarJedi.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-          }
-          
-          @font-face {
-            font-family: 'Komika Axis';
-            src: url('/fonts/KomikaAxis.woff2') format('woff2'),
-                 url('/fonts/KomikaAxis.woff') format('woff'),
-                 url('/fonts/KomikaAxis.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-          }
-        `}</style>
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>

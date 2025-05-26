@@ -120,7 +120,7 @@ const SocialIcon = ({ icon: Icon, href, label }: { icon: any; href: string; labe
           </motion.a>
         </TooltipTrigger>
         <TooltipContent side="left" className="bg-gray-800 text-white border-gray-700">
-          <p className="font-montserrat text-sm">{label}</p>
+          <p className="text-body-small">{label}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -152,16 +152,16 @@ export default function HeroSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          {/* Name with Star Jedi font */}
+          {/* Name with Sora font */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            <h1 className="font-star-jedi heading-responsive text-[#f1f1f1] text-glow-blue tracking-wider">
+            <h1 className="heading-hero tracking-wide">
               <span className="block">Anil</span>
-              <span className="block -mt-2 md:-mt-4">Guwalani</span>
+              <span className="block -mt-4 md:-mt-6">Guwalani</span>
             </h1>
 
             {/* Glowing underline */}
@@ -173,14 +173,14 @@ export default function HeroSection() {
             />
           </motion.div>
 
-          {/* Enhanced subtitle with Komika Axis */}
+          {/* Enhanced subtitle with Space Grotesk */}
           <motion.div
             className="relative"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            <p className="font-komika subheading-responsive text-[#a0a0a0] leading-relaxed">
+            <p className="heading-medium text-light leading-tight">
               Engineering the future.
               <br />
               Leading with purpose.

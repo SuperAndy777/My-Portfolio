@@ -19,7 +19,7 @@ const BelieveSign = () => {
         transition={{ duration: 0.5 }}
       />
 
-      {/* BELIEVE sign image with gentle sway */}
+      {/* BELIEVE sign image with continuous gentle sway */}
       <motion.div
         className="relative transform"
         initial={{ opacity: 0, y: -50, rotateX: 20 }}
@@ -31,7 +31,7 @@ const BelieveSign = () => {
       >
         <motion.div
           animate={{
-            rotate: [-1, 1, -1],
+            rotate: [0, 1, -1, 0],
           }}
           transition={{
             duration: 4,
@@ -45,7 +45,7 @@ const BelieveSign = () => {
 
         {/* Pulsing glow effect behind the sign */}
         <motion.div
-          className="absolute inset-0 bg-yellow-400/30 rounded-lg blur-2xl -z-10"
+          className="absolute inset-0 bg-yellow-400/20 rounded-xl blur-2xl -z-10 animate-pulse"
           animate={{
             opacity: [0.2, 0.5, 0.2],
             scale: [1, 1.1, 1],
@@ -88,15 +88,15 @@ export default function BelieveSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, delay: 1.2 }}
+          transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
           className="space-y-4"
         >
-          <p className="font-komika text-xl md:text-2xl text-[#a0a0a0]">Thank you for visiting.</p>
+          <p className="heading-medium text-light">Thank you for visiting.</p>
           <motion.p
-            className="font-montserrat text-lg md:text-xl text-[#66ccff] font-medium"
+            className="text-body-large text-accent hover-glow"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 1.8 }}
+            transition={{ duration: 0.6, delay: 1.8, ease: "easeOut" }}
           >
             May the Force be with you.
           </motion.p>
