@@ -36,28 +36,28 @@ const BusinessCard = ({
               scale: 1.03,
               boxShadow: "0 0 15px #66ccff33",
             }}
-            className="group cursor-pointer mb-6 lg:mb-8 last:mb-0"
+            className="group cursor-pointer mb-4 sm:mb-6 lg:mb-8 last:mb-0"
           >
-            <Card className="relative bg-slate-800/30 border-slate-600/40 hover:border-[#66ccff]/60 transition-all duration-500 overflow-hidden backdrop-blur-sm">
+            <Card className="portfolio-card">
               {/* Glowing background */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#66ccff]/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 bg-gradient-to-r from-[#66ccff]/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
                 initial={false}
               />
 
-              <CardContent className="p-6 lg:p-8 relative z-10">
-                <div className="flex items-center gap-6">
+              <CardContent className="p-4 sm:p-6 lg:p-8 relative z-10">
+                <div className="flex items-center gap-4 sm:gap-6">
                   {/* Icon */}
                   <motion.div
-                    className="p-4 bg-[#66ccff]/20 rounded-full border border-[#66ccff]/30 group-hover:border-[#66ccff]/60 transition-colors duration-300"
+                    className="p-3 sm:p-4 bg-[#66ccff]/20 rounded-full border border-[#66ccff]/30 group-hover:border-[#66ccff]/60 transition-colors duration-300 flex-shrink-0"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 200 }}
                   >
-                    <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300" />
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300" />
                   </motion.div>
 
                   {/* Content */}
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <h3 className="heading-small group-hover:text-accent transition-colors duration-300 mb-2">
                       {title}
                     </h3>
@@ -65,14 +65,6 @@ const BusinessCard = ({
                   </div>
                 </div>
               </CardContent>
-
-              {/* Glowing border */}
-              <motion.div
-                className="absolute inset-0 border border-[#66ccff]/0 group-hover:border-[#66ccff]/50 rounded-lg transition-all duration-500"
-                whileHover={{
-                  boxShadow: "0 0 30px rgba(102, 204, 255, 0.2)",
-                }}
-              />
             </Card>
           </motion.div>
         </TooltipTrigger>
@@ -116,11 +108,14 @@ export default function BusinessSection() {
   ]
 
   return (
-    <section ref={ref} className="relative min-h-screen w-full flex flex-col justify-center px-6 lg:px-8 py-20">
+    <section
+      ref={ref}
+      className="relative min-h-screen w-full flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+    >
       <div className="relative z-10 max-w-4xl mx-auto w-full">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -134,7 +129,7 @@ export default function BusinessSection() {
             Business & Leadership
           </motion.h1>
           <motion.p
-            className="heading-medium text-light mt-4"
+            className="heading-medium text-light mt-3 sm:mt-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
@@ -144,7 +139,7 @@ export default function BusinessSection() {
         </motion.div>
 
         {/* Business Cards */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {businessRoles.map((role, index) => (
             <BusinessCard
               key={index}

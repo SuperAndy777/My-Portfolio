@@ -38,28 +38,28 @@ const TechCard = ({
             }}
             className="group h-full cursor-pointer"
           >
-            <Card className="relative bg-slate-800/30 border-slate-600/50 hover:border-[#66ccff]/60 transition-all duration-500 overflow-hidden backdrop-blur-sm h-full">
+            <Card className="portfolio-card h-full">
               <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="block h-full">
                 {/* Glowing background on hover */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-[#66ccff]/10 to-cyan-500/10 opacity-0 group-hover:opacity-100"
+                  className="absolute inset-0 bg-gradient-to-br from-[#66ccff]/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 rounded-lg"
                   transition={{ duration: 0.5 }}
                 />
 
-                <CardContent className="p-6 md:p-8 relative z-10 flex flex-col items-center text-center h-full">
+                <CardContent className="p-4 sm:p-6 md:p-8 relative z-10 flex flex-col items-center text-center h-full">
                   {/* Icon */}
                   <motion.div
-                    className="mb-6 p-4 bg-[#66ccff]/20 rounded-full border border-[#66ccff]/30 group-hover:border-[#66ccff]/60 transition-colors duration-300"
+                    className="mb-4 sm:mb-6 p-3 sm:p-4 bg-[#66ccff]/20 rounded-full border border-[#66ccff]/30 group-hover:border-[#66ccff]/60 transition-colors duration-300"
                     whileHover={{ rotate: 10, scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 200 }}
                   >
-                    <Icon className="w-6 h-6 md:w-8 md:h-8 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300" />
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300" />
                   </motion.div>
 
                   {/* Title */}
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
                     <h3 className="heading-small group-hover:text-accent transition-colors duration-300">{title}</h3>
-                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-[#66ccff] transition-colors duration-300 opacity-0 group-hover:opacity-100" />
+                    <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover:text-[#66ccff] transition-colors duration-300 opacity-0 group-hover:opacity-100" />
                   </div>
 
                   {/* Description */}
@@ -74,14 +74,6 @@ const TechCard = ({
                     </p>
                   </motion.div>
                 </CardContent>
-
-                {/* Glowing border effect */}
-                <motion.div
-                  className="absolute inset-0 border border-[#66ccff]/0 group-hover:border-[#66ccff]/50 rounded-lg transition-all duration-500"
-                  whileHover={{
-                    boxShadow: "0 0 30px rgba(102, 204, 255, 0.3)",
-                  }}
-                />
               </a>
             </Card>
           </motion.div>
@@ -121,11 +113,14 @@ export default function TechSection() {
   ]
 
   return (
-    <section ref={ref} className="relative min-h-screen w-full flex flex-col justify-center px-6 lg:px-8 py-20">
+    <section
+      ref={ref}
+      className="relative min-h-screen w-full flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+    >
       <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -139,7 +134,7 @@ export default function TechSection() {
             Tech Side
           </motion.h1>
           <motion.p
-            className="heading-medium text-light mt-4"
+            className="heading-medium text-light mt-3 sm:mt-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
@@ -149,7 +144,7 @@ export default function TechSection() {
         </motion.div>
 
         {/* Tech Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
           {techProjects.map((project, index) => (
             <TechCard
               key={index}

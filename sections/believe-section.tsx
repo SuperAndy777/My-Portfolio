@@ -13,7 +13,7 @@ const BelieveSign = () => {
     <div ref={ref} className="relative">
       {/* Hanging string */}
       <motion.div
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gradient-to-b from-yellow-600/60 to-transparent"
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-6 sm:h-8 bg-gradient-to-b from-yellow-600/60 to-transparent"
         initial={{ scaleY: 0 }}
         animate={isInView ? { scaleY: 1 } : {}}
         transition={{ duration: 0.5 }}
@@ -38,9 +38,16 @@ const BelieveSign = () => {
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
-          className="relative w-80 h-48 md:w-96 md:h-56"
+          className="relative w-64 h-40 sm:w-80 sm:h-48 md:w-96 md:h-56"
         >
-          <Image src="/images/believe-sign.png" alt="BELIEVE sign" fill className="object-contain" priority />
+          <Image
+            src="/images/believe-sign.png"
+            alt="BELIEVE sign"
+            fill
+            className="object-contain"
+            priority
+            sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
+          />
         </motion.div>
 
         {/* Pulsing glow effect behind the sign */}
@@ -68,7 +75,7 @@ export default function BelieveSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-6"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-12 sm:py-16"
     >
       {/* Darker vignette overlay */}
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40" />
@@ -76,7 +83,7 @@ export default function BelieveSection() {
       <div className="relative z-10 text-center">
         {/* BELIEVE sign */}
         <motion.div
-          className="mb-12"
+          className="mb-8 sm:mb-12"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
@@ -89,7 +96,7 @@ export default function BelieveSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
-          className="space-y-4"
+          className="space-y-3 sm:space-y-4"
         >
           <p className="heading-medium text-light">Thank you for visiting.</p>
           <motion.p
@@ -103,7 +110,7 @@ export default function BelieveSection() {
         </motion.div>
 
         {/* Subtle sparkles */}
-        {Array.from({ length: 20 }, (_, i) => (
+        {Array.from({ length: 15 }, (_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white rounded-full"

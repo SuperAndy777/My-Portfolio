@@ -7,6 +7,7 @@ import HeroSection from "../sections/hero-section"
 import TechSection from "../sections/tech-section"
 import BusinessSection from "../sections/business-section"
 import BelieveSection from "../sections/believe-section"
+import { useEffect, useState } from "react"
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -18,8 +19,14 @@ const sectionVariants = {
 }
 
 export default function Page() {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    setIsLoaded(true)
+  }, [])
+
   return (
-    <div className="relative scroll-container">
+    <div className={`relative scroll-container ${isLoaded ? "loaded" : "loading"}`}>
       {/* Consistent galaxy background across all sections */}
       <GalaxyBackground />
 

@@ -21,7 +21,7 @@ const GroguPod = () => {
         ease: "easeInOut",
       }}
     >
-      <div className="relative w-48 h-48 md:w-64 md:h-64">
+      <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
         {/* Pod shell */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full shadow-2xl">
           <div className="absolute inset-2 bg-gradient-to-br from-gray-100 to-gray-300 rounded-full">
@@ -34,6 +34,7 @@ const GroguPod = () => {
                   fill
                   className="object-cover object-center scale-110"
                   priority
+                  sizes="(max-width: 768px) 128px, (max-width: 1024px) 192px, 224px"
                 />
               </div>
             </div>
@@ -50,7 +51,7 @@ const GroguPod = () => {
 const JediAvatar = () => {
   return (
     <div className="relative">
-      <div className="relative w-64 h-80 md:w-80 md:h-96">
+      <div className="relative w-48 h-60 sm:w-56 sm:h-72 md:w-64 md:h-80 lg:w-72 lg:h-88">
         {/* Avatar with your actual photo */}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg shadow-2xl overflow-hidden">
           <div className="relative w-full h-full">
@@ -60,6 +61,7 @@ const JediAvatar = () => {
               fill
               className="object-cover"
               priority
+              sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 288px"
               style={{
                 filter: "contrast(1.1) brightness(0.95) saturate(1.1)",
               }}
@@ -73,7 +75,7 @@ const JediAvatar = () => {
 
         {/* Glowing stylus */}
         <motion.div
-          className="absolute bottom-16 right-8 w-1 h-16 bg-gradient-to-t from-[#66ccff] to-cyan-300 rounded-full shadow-lg"
+          className="absolute bottom-12 right-6 w-1 h-12 bg-gradient-to-t from-[#66ccff] to-cyan-300 rounded-full shadow-lg"
           animate={{
             opacity: [0.7, 1, 0.7],
             boxShadow: ["0 0 10px #66ccff", "0 0 20px #66ccff, 0 0 30px #22d3ee", "0 0 10px #66ccff"],
@@ -102,11 +104,11 @@ const SocialIcon = ({ icon: Icon, href, label }: { icon: any; href: string; labe
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative w-12 h-12 rounded-full bg-gray-800/50 border border-[#66ccff]/30 hover:border-[#66ccff]/60 transition-all duration-300 flex items-center justify-center group cursor-pointer z-50"
+            className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-800/50 border border-[#66ccff]/30 hover:border-[#66ccff]/60 transition-all duration-300 flex items-center justify-center group cursor-pointer z-50"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Icon className="w-6 h-6 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300 pointer-events-none" />
+            <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#66ccff] group-hover:text-[#66ccff]/80 transition-colors duration-300 pointer-events-none" />
             <motion.div
               className="absolute inset-0 rounded-full bg-[#66ccff]/20 pointer-events-none"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -132,12 +134,15 @@ export default function HeroSection() {
   const isInView = useInView(ref, { once: true, margin: "-200px" })
 
   return (
-    <section ref={ref} className="relative min-h-screen w-full flex items-center justify-center px-4 md:px-8">
+    <section
+      ref={ref}
+      className="relative min-h-screen w-full flex items-center justify-center px-4 sm:px-6 md:px-8 py-8"
+    >
       {/* Main content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center">
         {/* Left side - Your Profile Photo */}
         <motion.div
-          className="flex justify-center lg:justify-start"
+          className="flex justify-center lg:justify-start order-2 lg:order-1"
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
@@ -147,7 +152,7 @@ export default function HeroSection() {
 
         {/* Center - Main content with enhanced typography */}
         <motion.div
-          className="text-center space-y-8"
+          className="text-center space-y-6 lg:space-y-8 order-1 lg:order-2"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.4 }}
@@ -161,12 +166,12 @@ export default function HeroSection() {
           >
             <h1 className="heading-hero tracking-wide">
               <span className="block">Anil</span>
-              <span className="block -mt-4 md:-mt-6">Guwalani</span>
+              <span className="block -mt-2 sm:-mt-3 md:-mt-4">Guwalani</span>
             </h1>
 
             {/* Glowing underline */}
             <motion.div
-              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-[#66ccff] to-transparent rounded-full"
+              className="absolute -bottom-2 sm:-bottom-3 md:-bottom-4 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-[#66ccff] to-transparent rounded-full"
               initial={{ width: 0 }}
               animate={isInView ? { width: "60%" } : {}}
               transition={{ duration: 1.5, delay: 1.2 }}
@@ -189,20 +194,20 @@ export default function HeroSection() {
 
           {/* Decorative elements */}
           <motion.div
-            className="flex justify-center items-center space-x-4 mt-8"
+            className="flex justify-center items-center space-x-4 mt-6 lg:mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1.4 }}
           >
-            <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#66ccff]" />
+            <div className="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent to-[#66ccff]" />
             <div className="w-2 h-2 bg-[#66ccff] rounded-full animate-pulse" />
-            <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#66ccff]" />
+            <div className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-[#66ccff]" />
           </motion.div>
         </motion.div>
 
         {/* Right side - Grogu Pod */}
         <motion.div
-          className="flex justify-center lg:justify-end"
+          className="flex justify-center lg:justify-end order-3"
           initial={{ opacity: 0, x: 50 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
@@ -213,7 +218,7 @@ export default function HeroSection() {
 
       {/* Social icons - Bottom right */}
       <motion.div
-        className="absolute bottom-8 right-8 flex flex-col space-y-4 z-50"
+        className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 flex flex-col space-y-3 sm:space-y-4 z-50"
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1, delay: 1 }}
