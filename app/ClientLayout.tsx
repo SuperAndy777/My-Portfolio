@@ -20,8 +20,8 @@ export default function ClientLayout({
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
-        {/* Viewport meta for mobile */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
