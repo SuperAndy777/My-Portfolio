@@ -3,10 +3,10 @@
 import { motion } from "framer-motion"
 import { GalaxyBackground } from "../components/galaxy-background"
 import { SectionDivider } from "../components/section-divider"
-import HeroSection from "../sections/hero-section"
-import TechSection from "../sections/tech-section"
-import BusinessSection from "../sections/business-section"
-import BelieveSection from "../sections/believe-section"
+import HeroSection from "./hero-section"
+import TechSection from "./tech-section"
+import BusinessSection from "./business-section"
+import BelieveSection from "./believe-section"
 import { useEffect, useState } from "react"
 
 const sectionVariants = {
