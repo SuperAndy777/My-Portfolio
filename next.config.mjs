@@ -18,9 +18,7 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    optimizeCss: true,
-  },
+  // Removed experimental.optimizeCss which was causing the critters error
 }
 
 export default nextConfig

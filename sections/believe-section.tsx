@@ -83,7 +83,7 @@ export default function BelieveSection() {
       <div className="relative z-10 text-center">
         {/* BELIEVE sign */}
         <motion.div
-          className="mb-8 sm:mb-12"
+          className="mb-16 sm:mb-20"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
