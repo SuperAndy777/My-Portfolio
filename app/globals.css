@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -70,31 +71,94 @@
     @apply border-border;
   }
 
-  html {
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    font-size: 16px;
-  }
-
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-body);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    @apply bg-[#fafafa] text-foreground;
+    font-family: "Inter", system-ui, sans-serif;
   }
 
-  /* Ensure proper sizing on mobile */
-  @media (max-width: 768px) {
-    html {
-      font-size: 14px;
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Sora", system-ui, sans-serif;
   }
 }
 
 /* Typography System with System Fonts */
 @layer components {
+  .section-fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+
+  .section-fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .timeline-item-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .timeline-item-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .timeline-item-left.visible,
+  .timeline-item-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .glow-text {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    }
+    to {
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+    }
+  }
+
+  .slide-down {
+    animation: slideDown 0.8s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .micro-bounce:hover {
+    animation: microBounce 0.3s ease-in-out;
+  }
+
+  @keyframes microBounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+
   /* Primary Headings - Bold system fonts */
   .heading-primary {
     font-family: var(--font-heading) !important;
@@ -338,5 +402,18 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .text-hero {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .text-section {
+    font-size: 2rem;
+    line-height: 1.2;
   }
 }

@@ -1,10 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
-import ClientLayout from "./ClientLayout"
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Anil Guwalani - Portfolio",
-  description: "Engineering the future. Leading with purpose.",
+  description: "Hey! it's Anil! - A journey through code, leadership, and creativity.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -16,8 +16,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <ClientLayout>{children}</ClientLayout>
+  return (
+    <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body className="antialiased">{children}</body>
+    </html>
+  )
 }
-
-
-import './globals.css'
