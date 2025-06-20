@@ -42,19 +42,22 @@ const JournalCard = ({ entry, index }: { entry: JournalEntry; index: number }) =
   return (
     <motion.div
       ref={ref}
-      className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all duration-300 cursor-pointer"
+      className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:-translate-y-1 hover:shadow-md transition-all duration-300 cursor-pointer"
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
-      <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
+      <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-3 transition-colors duration-300">
         <Calendar size={14} />
         {entry.date}
       </div>
-      <h3 className="text-xl font-semibold text-gray-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>
+      <h3
+        className="text-xl font-semibold text-gray-900 dark:text-white mb-3 transition-colors duration-300"
+        style={{ fontFamily: "Sora, sans-serif" }}
+      >
         {entry.title}
       </h3>
-      <p className="text-gray-600 leading-relaxed">{entry.excerpt}</p>
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">{entry.excerpt}</p>
     </motion.div>
   )
 }
@@ -64,7 +67,7 @@ export default function JournalSection() {
   const isInView = useInView(ref, { once: true, margin: "-200px" })
 
   return (
-    <section ref={ref} className="pt-20 pb-24 px-6 bg-gray-50">
+    <section ref={ref} className="pt-20 pb-24 px-6 bg-gray-50 dark:bg-gray-800 transition-colors duration-500">
       <div className="max-w-4xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -72,10 +75,15 @@ export default function JournalSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h2
+            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-500"
+            style={{ fontFamily: "Sora, sans-serif" }}
+          >
             What am I up to?
           </h2>
-          <p className="text-xl text-gray-600">Quick logs from my learning & creative mess</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300 transition-colors duration-500">
+            Quick logs from my learning & creative mess
+          </p>
         </motion.div>
 
         <div className="grid gap-6 md:gap-8 space-y-0">
@@ -90,7 +98,7 @@ export default function JournalSection() {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <div className="flex items-center justify-center gap-2 text-gray-500 italic">
+          <div className="flex items-center justify-center gap-2 text-gray-500 dark:text-gray-400 italic transition-colors duration-300">
             <span>Powered by markdown, fueled by coffee</span>
             <Coffee size={16} />
           </div>
