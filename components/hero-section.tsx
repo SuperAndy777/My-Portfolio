@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Send, Linkedin, Github, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+import SpotifyWidget from "./spotify-widget"
 
 const SocialLinks = () => {
   return (
@@ -118,11 +119,12 @@ const ContactForm = () => {
 
 export default function HeroSection() {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 pb-24 px-6 bg-white dark:bg-gray-900 transition-colors duration-500">
+    <section className="min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-6 bg-white dark:bg-gray-900 transition-colors duration-500">
       <SocialLinks />
       <DarkModeToggle />
 
-      <div className="text-center max-w-4xl mx-auto">
+      {/* Main Content */}
+      <div className="text-center max-w-4xl mx-auto flex-1 flex flex-col justify-center">
         <motion.h1
           className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white mb-8 slide-down transition-colors duration-500"
           style={{ fontFamily: "Sora, sans-serif" }}
@@ -149,6 +151,16 @@ export default function HeroSection() {
 
         <ContactForm />
       </div>
+
+      {/* Spotify Widget at Bottom */}
+      <motion.div
+        className="w-full max-w-4xl mx-auto mt-12"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.2 }}
+      >
+        <SpotifyWidget />
+      </motion.div>
     </section>
   )
 }
