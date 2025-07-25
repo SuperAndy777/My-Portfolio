@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import HeroSection from "../components/hero-section"
 import TimelineSection from "../components/timeline-section"
 import JournalSection from "../components/journal-section"
-import FunSection from "../components/fun-section"
 import BelieveSection from "../components/believe-section"
 
 export default function Page() {
@@ -19,7 +18,6 @@ export default function Page() {
       <HeroSection />
       <TimelineSection />
       <JournalSection />
-      <FunSection />
       <BelieveSection />
     </div>
   )

@@ -4,33 +4,84 @@ import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
 import Image from "next/image"
 
-const BelieveImage = () => {
+// BELIEVE sign component with actual image
+const BelieveSign = () => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [imageError, setImageError] = useState(false)
 
-  if (imageError) {
-    return (
-      <div className="flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-4xl font-bold text-blue-800 dark:text-blue-400 mb-2 transition-colors duration-300">
-            BELIEVE
-          </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">
-            Motivational poster
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className="relative w-80 h-60 md:w-96 md:h-72">
-      <Image
-        src="/images/believe-sign.png"
-        alt="BELIEVE motivational poster"
-        fill
-        className="object-contain"
-        onError={() => setImageError(true)}
+    <div ref={ref} className="relative">
+      {/* Hanging string */}
+      <motion.div
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-8 sm:h-10 bg-gradient-to-b from-yellow-600/60 to-transparent"
+        initial={{ scaleY: 0 }}
+        animate={isInView ? { scaleY: 1 } : {}}
+        transition={{ duration: 0.5 }}
       />
+
+      {/* BELIEVE sign with actual image */}
+      <motion.div
+        className="relative transform"
+        initial={{ opacity: 0, y: -50, rotateX: 20 }}
+        animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+        transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 100 }}
+        style={{
+          filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.3))",
+        }}
+      >
+        <motion.div
+          animate={{
+            rotate: [0, 1, -1, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+          className="relative w-80 h-56 sm:w-96 sm:h-64 md:w-[28rem] md:h-72 lg:w-[32rem] lg:h-80"
+        >
+          {!imageError ? (
+            <Image
+              src="/images/believe-sign.png"
+              alt="BELIEVE sign"
+              fill
+              className="object-contain"
+              priority
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            // Fallback CSS BELIEVE sign if image fails
+            <div className="w-full h-full bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-lg shadow-2xl flex items-center justify-center">
+              <div className="text-center">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-blue-800 tracking-wider transform -rotate-1">
+                  BELIEVE
+                </h2>
+              </div>
+              {/* Tape corners */}
+              <div className="absolute -top-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
+              <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-lg"></div>
+            </div>
+          )}
+        </motion.div>
+
+        {/* Glow effect */}
+        <motion.div
+          className="absolute inset-0 bg-yellow-400/20 rounded-xl blur-2xl -z-10"
+          animate={{
+            opacity: [0.2, 0.5, 0.2],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+      </motion.div>
     </div>
   )
 }
@@ -42,43 +93,42 @@ export default function BelieveSection() {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex items-center justify-center pt-20 pb-24 px-6 bg-white dark:bg-gray-900 transition-colors duration-500"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-12 sm:py-16"
     >
-      <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
+      {/* Darker vignette overlay */}
+      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40" />
+
+      <div className="relative z-10 text-center flex items-center justify-center min-h-screen">
+        {/* BELIEVE sign - centered and bigger */}
         <motion.div
-          className="mb-12"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, delay: 0.2 }}
         >
-          <BelieveImage />
+          <BelieveSign />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <h2
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white transition-colors duration-500"
-            style={{ fontFamily: "Sora, sans-serif" }}
-          >
-            The End
-          </h2>
-        </motion.div>
-
-        <motion.div
-          className="mt-8 text-gray-600 dark:text-gray-300 transition-colors duration-500"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <p className="text-lg">
-            Thank you for taking this journey with me.
-            <br />
-            The best stories are yet to be written.
-          </p>
-        </motion.div>
+        {/* Subtle sparkles */}
+        {Array.from({ length: 15 }, (_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white rounded-full"
+            style={{
+              left: `${20 + Math.random() * 60}%`,
+              top: `${20 + Math.random() * 60}%`,
+            }}
+            animate={{
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0],
+            }}
+            transition={{
+              duration: 3,
+              delay: Math.random() * 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
       </div>
     </section>
   )
