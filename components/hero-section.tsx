@@ -14,28 +14,28 @@ const SocialLinks = () => {
         href="https://www.linkedin.com/in/anilguwalani/"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 shadow-sm"
+        className="w-10 h-10 bg-accent/20 hover:bg-accent/30 backdrop-blur-sm border border-accent/40 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <Linkedin size={18} className="text-blue-600 dark:text-blue-400" />
+        <Linkedin size={18} className="text-accent" />
       </motion.a>
 
       <motion.a
         href="https://github.com/SuperAndy777"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 shadow-sm"
+        className="w-10 h-10 bg-accent/20 hover:bg-accent/30 backdrop-blur-sm border border-accent/40 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
       >
-        <Github size={18} className="text-gray-700 dark:text-gray-300" />
+        <Github size={18} className="text-accent" />
       </motion.a>
     </div>
   )
@@ -52,8 +52,8 @@ const DarkModeToggle = () => {
   if (!mounted) {
     return (
       <div className="fixed top-6 right-6 z-10">
-        <div className="w-10 h-10 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full flex items-center justify-center shadow-sm">
-          <div className="w-5 h-5 bg-gray-300 rounded animate-pulse" />
+        <div className="w-10 h-10 bg-muted/30 backdrop-blur-sm border border-border rounded-full flex items-center justify-center shadow-sm">
+          <div className="w-5 h-5 bg-muted rounded animate-pulse" />
         </div>
       </div>
     )
@@ -63,18 +63,14 @@ const DarkModeToggle = () => {
     <div className="fixed top-6 right-6 z-10">
       <motion.button
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 shadow-sm"
+        className="w-10 h-10 bg-secondary/50 hover:bg-secondary/70 backdrop-blur-sm border border-border rounded-full flex items-center justify-center transition-all duration-300 shadow-sm"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        {theme === "dark" ? (
-          <Sun size={18} className="text-yellow-500" />
-        ) : (
-          <Moon size={18} className="text-gray-700" />
-        )}
+        {theme === "dark" ? <Sun size={18} className="text-accent" /> : <Moon size={18} className="text-foreground" />}
       </motion.button>
     </div>
   )
@@ -103,12 +99,12 @@ const ContactForm = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Say hello..."
-          className="px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+          className="px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-secondary text-foreground placeholder-muted-foreground transition-colors duration-300"
         />
         <button
           type="submit"
           onClick={handleSubmit}
-          className="px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 flex items-center gap-2 micro-bounce whitespace-nowrap"
+          className="px-6 py-3 bg-accent text-primary rounded-lg hover:bg-accent/90 transition-colors duration-200 flex items-center gap-2 micro-bounce whitespace-nowrap font-medium"
         >
           <Send size={16} />
           Send
@@ -119,7 +115,7 @@ const ContactForm = () => {
         href="https://drive.google.com/file/d/1-h-vQVjTXAgDniuj7KASwm1Wi3eB4zjk/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
-        className="px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-200 font-medium"
+        className="px-6 py-3 bg-secondary text-foreground rounded-lg hover:bg-secondary/80 transition-colors duration-200 font-medium border border-border"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.9 }}
@@ -132,14 +128,14 @@ const ContactForm = () => {
 
 export default function HeroSection() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-6 bg-white dark:bg-gray-900 transition-colors duration-500">
+    <section className="min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-6 bg-background transition-colors duration-500">
       <SocialLinks />
       <DarkModeToggle />
 
       {/* Main Content */}
       <div className="text-center max-w-4xl mx-auto flex-1 flex flex-col justify-center">
         <motion.h1
-          className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white mb-8 slide-down transition-colors duration-500"
+          className="text-6xl md:text-8xl font-bold text-foreground mb-8 slide-down transition-colors duration-500"
           style={{ fontFamily: "Sora, sans-serif" }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -154,10 +150,10 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <p className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 font-medium transition-colors duration-500">
+          <p className="text-2xl md:text-3xl text-muted-foreground font-medium transition-colors duration-500">
             Hello | 你好 | नमस्ते | ڀليڪار | नमस्कार
           </p>
-          <p className="text-lg text-gray-500 dark:text-gray-400 italic transition-colors duration-500">
+          <p className="text-lg text-muted-foreground/80 italic transition-colors duration-500">
             (just a few languages you can talk to me in :) )
           </p>
         </motion.div>

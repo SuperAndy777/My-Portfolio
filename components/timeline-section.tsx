@@ -63,13 +63,11 @@ const ImageWithFallback = ({
 }) => {
   return (
     <div
-      className={`${className} bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center transition-colors duration-500`}
+      className={`${className} bg-gradient-to-br from-secondary to-secondary/50 flex items-center justify-center transition-colors duration-500 border border-accent/20`}
     >
       <div className="text-center">
-        <div className="text-4xl font-bold text-gray-600 dark:text-gray-300 mb-2 transition-colors duration-500">
-          {fallbackInitials}
-        </div>
-        <div className="text-sm text-gray-500 dark:text-gray-400 px-4 transition-colors duration-500">{alt}</div>
+        <div className="text-4xl font-bold text-accent mb-2 transition-colors duration-500">{fallbackInitials}</div>
+        <div className="text-sm text-muted-foreground px-4 transition-colors duration-500">{alt}</div>
       </div>
     </div>
   )
@@ -96,22 +94,20 @@ const TimelineItemComponent = ({
       transition={{ duration: 0.6, delay: index * 0.2 }}
     >
       {/* Image */}
-      <div className="relative w-80 h-80 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
+      <div className="relative w-80 h-80 rounded-full overflow-hidden flex-shrink-0 shadow-lg border-4 border-accent/30">
         <ImageWithFallback alt={item.imageAlt} fallbackInitials={item.fallbackInitials} className="w-full h-full" />
       </div>
 
       {/* Content */}
       <div className={`flex-1 text-center md:text-left ${isLeft ? "md:text-right" : ""}`}>
         <h3
-          className="text-3xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-500"
+          className="text-3xl font-bold text-foreground mb-2 transition-colors duration-500"
           style={{ fontFamily: "Sora, sans-serif" }}
         >
           {item.title}
         </h3>
-        <p className="text-lg text-blue-600 dark:text-blue-400 font-medium mb-4 transition-colors duration-500">
-          {item.period}
-        </p>
-        <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed transition-colors duration-500">
+        <p className="text-lg text-accent font-medium mb-4 transition-colors duration-500">{item.period}</p>
+        <p className="text-muted-foreground text-lg leading-relaxed transition-colors duration-500">
           {item.description}
         </p>
       </div>
@@ -124,7 +120,7 @@ export default function TimelineSection() {
   const isInView = useInView(ref, { once: true, margin: "-200px" })
 
   return (
-    <section ref={ref} className="pt-20 pb-24 px-6 bg-white dark:bg-gray-900 transition-colors duration-500">
+    <section ref={ref} className="pt-20 pb-24 px-6 bg-background transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -133,12 +129,12 @@ export default function TimelineSection() {
           transition={{ duration: 0.6 }}
         >
           <h2
-            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-500"
+            className="text-5xl md:text-6xl font-bold text-foreground mb-4 transition-colors duration-500"
             style={{ fontFamily: "Sora, sans-serif" }}
           >
             Into the Me-Verse
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 transition-colors duration-500">
+          <p className="text-xl text-muted-foreground transition-colors duration-500">
             Snapshots from schoolyards to boardrooms
           </p>
         </motion.div>

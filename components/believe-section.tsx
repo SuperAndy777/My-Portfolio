@@ -14,7 +14,7 @@ const BelieveSign = () => {
     <div ref={ref} className="relative">
       {/* Hanging string */}
       <motion.div
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-8 sm:h-10 bg-gradient-to-b from-yellow-600/60 to-transparent"
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-8 sm:h-10 bg-gradient-to-b from-accent/60 to-transparent"
         initial={{ scaleY: 0 }}
         animate={isInView ? { scaleY: 1 } : {}}
         transition={{ duration: 0.5 }}
@@ -27,7 +27,7 @@ const BelieveSign = () => {
         animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
         transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 100 }}
         style={{
-          filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.3))",
+          filter: "drop-shadow(0 10px 30px rgba(32, 178, 170, 0.3))",
         }}
       >
         <motion.div
@@ -52,25 +52,25 @@ const BelieveSign = () => {
             />
           ) : (
             // Fallback CSS BELIEVE sign if image fails
-            <div className="w-full h-full bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-lg shadow-2xl flex items-center justify-center">
+            <div className="w-full h-full bg-gradient-to-br from-accent/80 to-accent/60 rounded-lg shadow-2xl flex items-center justify-center">
               <div className="text-center">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-blue-800 tracking-wider transform -rotate-1">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-primary tracking-wider transform -rotate-1">
                   BELIEVE
                 </h2>
               </div>
               {/* Tape corners */}
-              <div className="absolute -top-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-              <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-lg"></div>
+              <div className="absolute -top-2 -left-2 w-8 h-8 bg-muted transform rotate-45 opacity-60"></div>
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-muted transform rotate-45 opacity-60"></div>
+              <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-muted transform rotate-45 opacity-60"></div>
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-muted transform rotate-45 opacity-60"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-lg"></div>
             </div>
           )}
         </motion.div>
 
         {/* Glow effect */}
         <motion.div
-          className="absolute inset-0 bg-yellow-400/20 rounded-xl blur-2xl -z-10"
+          className="absolute inset-0 bg-accent/20 rounded-xl blur-2xl -z-10"
           animate={{
             opacity: [0.2, 0.5, 0.2],
             scale: [1, 1.1, 1],
@@ -93,9 +93,8 @@ export default function BelieveSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-12 sm:py-16"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-12 sm:py-16 bg-background"
     >
-      {/* Darker vignette overlay */}
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40" />
 
       <div className="relative z-10 text-center flex items-center justify-center min-h-screen">
@@ -112,7 +111,7 @@ export default function BelieveSection() {
         {Array.from({ length: 15 }, (_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full"
+            className="absolute w-1 h-1 bg-accent rounded-full"
             style={{
               left: `${20 + Math.random() * 60}%`,
               top: `${20 + Math.random() * 60}%`,
