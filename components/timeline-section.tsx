@@ -16,32 +16,36 @@ const timelineData: TimelineItem[] = [
   {
     id: 1,
     title: "Early Days",
-    period: "2000-2018",
-    description: "From curious kid to ambitious student, building the foundation for everything that followed.",
+    period: "2003-2021",
+    description:
+      "Born in Bhopal. Elementary schooling in Washim, Maharashtra. Completed high school back in Bhopal, building the foundation for everything that followed.",
     imageAlt: "Early childhood and school years",
     fallbackInitials: "ED",
   },
   {
     id: 2,
-    title: "University Adventures",
-    period: "2018-2022",
-    description: "Computer Science at BITS Pilani, where code met creativity and friendships were forged.",
+    title: "University Adventure",
+    period: "2022-2026",
+    description:
+      "Computer Science with Gaming Tech at SRMIST KTR. Where code met creativity, gaming passion came alive, and ambitions were refined.",
     imageAlt: "University life and studies",
     fallbackInitials: "UA",
   },
   {
     id: 3,
     title: "AIESEC Leadership",
-    period: "2020-2022",
-    description: "Leading teams, building partnerships, and facilitating youth experiences across borders.",
+    period: "2023-2025",
+    description:
+      "Started as Marketing Manager, progressed to Head of External Relations and Business Development. Led teams, built partnerships, and facilitated countless youth experiences.",
     imageAlt: "AIESEC leadership experience",
     fallbackInitials: "AL",
   },
   {
     id: 4,
     title: "Professional Journey",
-    period: "2022-Present",
-    description: "Engineering solutions, leading projects, and continuously learning in the tech world.",
+    period: "2025-Present",
+    description:
+      "Interned at Taipei Economic and Cultural Centre in India. Now leading projects, seeking opportunities to learn, grow, and make a meaningful impact.",
     imageAlt: "Professional career",
     fallbackInitials: "PJ",
   },

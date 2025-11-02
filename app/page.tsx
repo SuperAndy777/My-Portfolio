@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import HeroSection from "../components/hero-section"
 import TimelineSection from "../components/timeline-section"
-import JournalSection from "../components/journal-section"
 import BelieveSection from "../components/believe-section"
 
 export default function Page() {
@@ -17,7 +16,6 @@ export default function Page() {
     <div className={`${isLoaded ? "loaded" : "loading"}`}>
       <HeroSection />
       <TimelineSection />
-      <JournalSection />
       <BelieveSection />
     </div>
   )

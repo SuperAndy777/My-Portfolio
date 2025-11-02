@@ -1,26 +1,12 @@
 import { NextResponse } from "next/server"
-import { getJournalEntries } from "@/lib/notion"
 
 export async function GET() {
   try {
     console.log("🔄 Journal API route called")
 
-    // Try to fetch from Notion
-    const notionEntries = await getJournalEntries()
-
-    if (notionEntries.length > 0) {
-      console.log(`✅ Returning ${notionEntries.length} entries from Notion`)
-      return NextResponse.json({
-        entries: notionEntries,
-        count: notionEntries.length,
-        timestamp: new Date().toISOString(),
-        source: "notion",
-      })
-    }
-
-    // Fallback data if Notion fails or has no entries
-    console.log("📝 Returning fallback journal entries")
-    const fallbackEntries = [
+    // Fallback data
+    console.log("📝 Returning journal entries")
+    const entries = [
       {
         id: "fallback-1",
         title: "Building the Future",
@@ -57,34 +43,17 @@ export async function GET() {
     ]
 
     return NextResponse.json({
-      entries: fallbackEntries,
-      count: fallbackEntries.length,
+      entries: entries,
+      count: entries.length,
       timestamp: new Date().toISOString(),
-      source: "fallback",
     })
   } catch (error) {
     console.error("❌ Journal API error:", error)
 
-    // Even on error, return fallback data
-    const errorFallback = [
-      {
-        id: "error-fallback",
-        title: "System Maintenance",
-        date: "Dec 25, 2024",
-        excerpt:
-          "The journal system is currently undergoing maintenance. Please check back soon for the latest updates and insights.",
-        category: "tech",
-        status: "published",
-        tags: ["maintenance", "system"],
-        lastEdited: new Date().toISOString(),
-      },
-    ]
-
     return NextResponse.json({
-      entries: errorFallback,
-      count: errorFallback.length,
+      entries: [],
+      count: 0,
       timestamp: new Date().toISOString(),
-      source: "fallback",
       error: error instanceof Error ? error.message : "Unknown error",
     })
   }

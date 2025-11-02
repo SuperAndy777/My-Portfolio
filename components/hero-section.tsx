@@ -6,7 +6,6 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Send, Linkedin, Github, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
-import SpotifyWidget from "./spotify-widget"
 
 const SocialLinks = () => {
   return (
@@ -92,28 +91,42 @@ const ContactForm = () => {
   }
 
   return (
-    <motion.form
-      onSubmit={handleSubmit}
-      className="flex gap-3 max-w-md mx-auto"
+    <motion.div
+      className="flex flex-col md:flex-row items-center gap-4 justify-center flex-wrap"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.8 }}
     >
-      <input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Say hello..."
-        className="flex-1 px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
-      />
-      <button
-        type="submit"
-        className="px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 flex items-center gap-2 micro-bounce"
+      <div className="flex gap-3">
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Say hello..."
+          className="px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+        />
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 flex items-center gap-2 micro-bounce whitespace-nowrap"
+        >
+          <Send size={16} />
+          Send
+        </button>
+      </div>
+
+      <motion.a
+        href="https://drive.google.com/file/d/1-h-vQVjTXAgDniuj7KASwm1Wi3eB4zjk/view?usp=sharing"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-200 font-medium"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.9 }}
       >
-        <Send size={16} />
-        Send
-      </button>
-    </motion.form>
+        Resume
+      </motion.a>
+    </motion.div>
   )
 }
 
@@ -151,16 +164,6 @@ export default function HeroSection() {
 
         <ContactForm />
       </div>
-
-      {/* Spotify Widget at Bottom */}
-      <motion.div
-        className="w-full max-w-4xl mx-auto mt-12"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-      >
-        <SpotifyWidget />
-      </motion.div>
     </section>
   )
 }
