@@ -1,7 +1,5 @@
 import type { Config } from "tailwindcss"
 
-// all in fixtures is set to tailwind v3 as interims solutions
-
 const config: Config = {
   darkMode: ["class"],
   content: [
@@ -13,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sora)", "system-ui", "sans-serif"],
+        sans: ["var(--font-sora)", "system-ui", "-apple-system", "sans-serif"],
       },
       colors: {
         background: "hsl(var(--background))",
