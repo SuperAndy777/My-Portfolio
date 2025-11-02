@@ -1,15 +1,22 @@
 "use client"
 
-import HeroSection from "@/components/hero-section"
-import TimelineSection from "@/components/timeline-section"
-import BelieveSection from "@/components/believe-section"
+import { useEffect, useState } from "react"
+import HeroSection from "../components/hero-section"
+import TimelineSection from "../components/timeline-section"
+import BelieveSection from "../components/believe-section"
 
-export default function Home() {
+export default function Page() {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    setIsLoaded(true)
+  }, [])
+
   return (
-    <main className="min-h-screen bg-background">
+    <div className={`${isLoaded ? "loaded" : "loading"}`}>
       <HeroSection />
       <TimelineSection />
       <BelieveSection />
-    </main>
+    </div>
   )
 }
