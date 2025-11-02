@@ -1,9 +1,9 @@
 "use client"
 
-import React from "react"
+import type React from "react"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Send, Linkedin, Github, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
@@ -14,26 +14,20 @@ const SocialLinks = () => {
         href="https://www.linkedin.com/in/anilguwalani/"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 shadow-sm"
+        className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 rounded-full flex items-center justify-center hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <Linkedin size={18} className="text-blue-600 dark:text-blue-400" />
+        <Linkedin size={18} className="text-blue-600" />
       </motion.a>
 
       <motion.a
         href="https://github.com/SuperAndy777"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 shadow-sm"
+        className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 rounded-full flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
       >
         <Github size={18} className="text-gray-700 dark:text-gray-300" />
       </motion.a>
@@ -45,125 +39,78 @@ const DarkModeToggle = () => {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
-    return (
-      <div className="fixed top-6 right-6 z-10">
-        <div className="w-10 h-10 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full flex items-center justify-center shadow-sm">
-          <div className="w-5 h-5 bg-gray-300 rounded animate-pulse" />
-        </div>
-      </div>
-    )
-  }
+  if (!mounted) return null
 
   return (
-    <div className="fixed top-6 right-6 z-10">
-      <motion.button
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 shadow-sm"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
-        {theme === "dark" ? (
-          <Sun size={18} className="text-yellow-500" />
-        ) : (
-          <Moon size={18} className="text-gray-700" />
-        )}
-      </motion.button>
-    </div>
-  )
-}
-
-const ContactForm = () => {
-  const [message, setMessage] = useState("")
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const subject = "Hello from your portfolio!"
-    const body = message || "Hi Anil, I'd love to connect!"
-    window.location.href = `mailto:anilguwalani78@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-  }
-
-  return (
-    <motion.div
-      className="flex flex-col md:flex-row items-center gap-4 justify-center flex-wrap"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.8 }}
+    <motion.button
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="fixed top-6 right-6 z-10 w-10 h-10 bg-white/80 dark:bg-gray-800/80 rounded-full flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
     >
-      <div className="flex gap-3">
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Say hello..."
-          className="px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
-        />
-        <button
-          type="submit"
-          onClick={handleSubmit}
-          className="px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 flex items-center gap-2 micro-bounce whitespace-nowrap"
-        >
-          <Send size={16} />
-          Send
-        </button>
-      </div>
-
-      <motion.a
-        href="https://drive.google.com/file/d/1-h-vQVjTXAgDniuj7KASwm1Wi3eB4zjk/view?usp=sharing"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-200 font-medium"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.9 }}
-      >
-        Resume
-      </motion.a>
-    </motion.div>
+      {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+    </motion.button>
   )
 }
 
 export default function HeroSection() {
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const mailtoLink = `mailto:anil.guwalani@example.com?subject=Message from Portfolio&body=${encodeURIComponent(message)}`
+    window.location.href = mailtoLink
+  }
+
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-6 bg-white dark:bg-gray-900 transition-colors duration-500">
+    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative overflow-hidden">
       <SocialLinks />
       <DarkModeToggle />
 
-      {/* Main Content */}
-      <div className="text-center max-w-4xl mx-auto flex-1 flex flex-col justify-center">
-        <motion.h1
-          className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white mb-8 slide-down transition-colors duration-500"
-          style={{ fontFamily: "Sora, sans-serif" }}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Hey! it's Anil!
-        </motion.h1>
+      <motion.div
+        className="max-w-3xl w-full text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">Hey! it's Anil!</h1>
+        <p className="text-xl mb-4 text-muted-foreground">Hello | नमस्ते | ترحبا | पर्खार | नमस्कार</p>
+        <p className="text-lg text-muted-foreground mb-8">(just a few languages you can talk to me in :))</p>
 
-        <motion.div
-          className="space-y-4 mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <p className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 font-medium transition-colors duration-500">
-            Hello | 你好 | नमस्ते | ڀليڪار | नमस्कार
-          </p>
-          <p className="text-lg text-gray-500 dark:text-gray-400 italic transition-colors duration-500">
-            (just a few languages you can talk to me in :) )
-          </p>
-        </motion.div>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 mb-8">
+          <div className="flex gap-2 flex-col sm:flex-row">
+            <input
+              type="email"
+              placeholder="Say hello..."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-1 px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+            <button
+              type="submit"
+              className="px-6 py-2 bg-foreground text-background rounded-lg hover:opacity-90 transition flex items-center justify-center gap-2 font-medium"
+            >
+              <Send size={18} />
+              Send
+            </button>
+          </div>
 
-        <ContactForm />
-      </div>
+          <a
+            href="https://drive.google.com/file/d/1-h-vQVjTXAgDniuj7KASwm1Wi3eB4zjk/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-2 bg-foreground text-background rounded-lg hover:opacity-90 transition font-medium w-full sm:w-auto"
+          >
+            Resume
+          </a>
+        </form>
+      </motion.div>
     </section>
   )
 }

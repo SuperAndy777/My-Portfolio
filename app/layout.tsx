@@ -13,9 +13,6 @@ const sora = Sora({
 export const metadata: Metadata = {
   title: "Anil Guwalani - Portfolio",
   description: "Hey! it's Anil! - A journey through code, leadership, and creativity.",
-  icons: {
-    icon: "/favicon.ico",
-  },
     generator: 'v0.app'
 }
 
@@ -25,15 +22,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${sora.variable} antialiased`}>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
-          {children}
-        </ThemeProvider>
+    <html lang="en" suppressHydrationWarning className={`${sora.variable}`}>
+      <body className="antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )

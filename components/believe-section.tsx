@@ -1,135 +1,35 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import Image from "next/image"
-
-// BELIEVE sign component with actual image
-const BelieveSign = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [imageError, setImageError] = useState(false)
-
-  return (
-    <div ref={ref} className="relative">
-      {/* Hanging string */}
-      <motion.div
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-8 sm:h-10 bg-gradient-to-b from-yellow-600/60 to-transparent"
-        initial={{ scaleY: 0 }}
-        animate={isInView ? { scaleY: 1 } : {}}
-        transition={{ duration: 0.5 }}
-      />
-
-      {/* BELIEVE sign with actual image */}
-      <motion.div
-        className="relative transform"
-        initial={{ opacity: 0, y: -50, rotateX: 20 }}
-        animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-        transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 100 }}
-        style={{
-          filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.3))",
-        }}
-      >
-        <motion.div
-          animate={{
-            rotate: [0, 1, -1, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="relative w-80 h-56 sm:w-96 sm:h-64 md:w-[28rem] md:h-72 lg:w-[32rem] lg:h-80"
-        >
-          {!imageError ? (
-            <Image
-              src="/images/believe-sign.png"
-              alt="BELIEVE sign"
-              fill
-              className="object-contain"
-              priority
-              onError={() => setImageError(true)}
-            />
-          ) : (
-            // Fallback CSS BELIEVE sign if image fails
-            <div className="w-full h-full bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-lg shadow-2xl flex items-center justify-center">
-              <div className="text-center">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-blue-800 tracking-wider transform -rotate-1">
-                  BELIEVE
-                </h2>
-              </div>
-              {/* Tape corners */}
-              <div className="absolute -top-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-              <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gray-400 transform rotate-45 opacity-60"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-lg"></div>
-            </div>
-          )}
-        </motion.div>
-
-        {/* Glow effect */}
-        <motion.div
-          className="absolute inset-0 bg-yellow-400/20 rounded-xl blur-2xl -z-10"
-          animate={{
-            opacity: [0.2, 0.5, 0.2],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-      </motion.div>
-    </div>
-  )
-}
 
 export default function BelieveSection() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-200px" })
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section
-      ref={ref}
-      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-12 sm:py-16"
-    >
-      {/* Darker vignette overlay */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40" />
-
-      <div className="relative z-10 text-center flex items-center justify-center min-h-screen">
-        {/* BELIEVE sign - centered and bigger */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <BelieveSign />
-        </motion.div>
-
-        {/* Subtle sparkles */}
-        {Array.from({ length: 15 }, (_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full"
-            style={{
-              left: `${20 + Math.random() * 60}%`,
-              top: `${20 + Math.random() * 60}%`,
-            }}
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3,
-              delay: Math.random() * 2,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
+    <section ref={ref} className="py-20 px-4 flex items-center justify-center min-h-screen">
+      <motion.div
+        className="text-center"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="mb-8 flex justify-center">
+          <Image
+            src="/images/believe-sign.png"
+            alt="BELIEVE sign"
+            width={600}
+            height={300}
+            priority
+            className="w-full max-w-2xl h-auto"
           />
-        ))}
-      </div>
+        </div>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          In yourself, in your journey, in the power of growth and continuous learning.
+        </p>
+      </motion.div>
     </section>
   )
 }
