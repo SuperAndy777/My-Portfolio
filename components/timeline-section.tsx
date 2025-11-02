@@ -120,26 +120,19 @@ export default function TimelineSection() {
   const isInView = useInView(ref, { once: true, margin: "-200px" })
 
   return (
-    <section ref={ref} className="pt-20 pb-24 px-6 bg-background transition-colors duration-500">
+    <section ref={ref} className="py-24 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-24"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2
-            className="text-5xl md:text-6xl font-bold text-foreground mb-4 transition-colors duration-500"
-            style={{ fontFamily: "Sora, sans-serif" }}
-          >
-            Into the Me-Verse
-          </h2>
-          <p className="text-xl text-muted-foreground transition-colors duration-500">
-            Snapshots from schoolyards to boardrooms
-          </p>
+          <h2 className="text-6xl md:text-7xl font-extrabold text-foreground mb-6">Into the Me-Verse</h2>
+          <p className="text-2xl text-accent font-semibold">Snapshots from schoolyards to boardrooms</p>
         </motion.div>
 
-        <div className="space-y-0">
+        <div className="space-y-20">
           {timelineData.map((item, index) => (
             <TimelineItemComponent key={item.id} item={item} index={index} isLeft={index % 2 === 1} />
           ))}

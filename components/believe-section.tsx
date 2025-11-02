@@ -93,12 +93,11 @@ export default function BelieveSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-12 sm:py-16 bg-background"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-24 bg-background"
     >
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-accent/10 via-transparent to-transparent pointer-events-none" />
 
-      <div className="relative z-10 text-center flex items-center justify-center min-h-screen">
-        {/* BELIEVE sign - centered and bigger */}
+      <div className="relative z-10 text-center flex items-center justify-center min-h-screen w-full">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -108,10 +107,10 @@ export default function BelieveSection() {
         </motion.div>
 
         {/* Subtle sparkles */}
-        {Array.from({ length: 15 }, (_, i) => (
+        {Array.from({ length: 20 }, (_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-accent rounded-full"
+            className="absolute w-1.5 h-1.5 bg-accent rounded-full"
             style={{
               left: `${20 + Math.random() * 60}%`,
               top: `${20 + Math.random() * 60}%`,
